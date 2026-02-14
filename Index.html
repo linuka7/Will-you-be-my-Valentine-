@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lahiru ♥️ Valentine</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4, #ffd1dc);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    font-family: 'Dancing Script', cursive;
+  }
+
+  .card {
+    z-index: 2;
+    width: 90%;
+    max-width: 400px;
+    background: rgba(255,255,255,0.2);
+    padding: 35px;
+    border-radius: 30px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+  }
+
+  h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 6px rgba(255,255,255,0.6);
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    margin: 0;
+    text-shadow: 0 0 4px rgba(255,255,255,0.5);
+  }
+
+  button {
+    border: none;
+    padding: 14px 28px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+    z-index: 3;
+  }
+
+  #yes {
+    background: #ff4d6d;
+    color: white;
+    box-shadow: 0 0 12px rgba(255,77,109,0.4);
+  }
+
+  #yes:hover { transform: scale(1.08); }
+
+  #no {
+    background: white;
+    color: #ff4d6d;
+  }
+
+  .heart, .sparkle {
+    position: absolute;
+    pointer-events: none;
+    animation: float linear infinite;
+    opacity: 0.9;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) scale(1); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(-10vh) scale(1.4); opacity: 0; }
+  }
+
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Lahiru ♥️</h1>
+  <h2>Will you be my Valentine? 💌</h2>
+
+  <button id="yes" onclick="yesClick()">Yes 💖</button>
+  <button id="no" ontouchstart="moveButton(event)" onmouseover="moveButton(event)">No 🙈</button>
+</div>
+
+<script>
+const noWords = ["No 🙈", "Maybe 😅", "Not yet 😬", "Try again 😜"];
+
+function moveButton(e) {
+  e.preventDefault();
+  const btn = document.getElementById("no");
+
+  btn.style.position = "fixed";
+  btn.style.top = Math.random() * (window.innerHeight - 60) + "px";
+  btn.style.left = Math.random() * (window.innerWidth - 120) + "px";
+
+  btn.innerText = noWords[Math.floor(Math.random() * noWords.length)];
+}
+
+// floating hearts before yes
+setInterval(() => {
+  const el = document.createElement("div");
+  const heart = Math.random() > 0.25;
+  el.className = heart ? "heart" : "sparkle";
+  el.style.fontSize = (Math.random() * 30 + 15) + "px";
+  el.style.left = Math.random() * window.innerWidth + "px";
+  el.style.animationDuration = (Math.random() * 4 + 4) + "s";
+  el.innerHTML = heart ? "💖" : "✨";
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 9000);
+}, 120);
+
+function yesClick() {
+  document.body.innerHTML = `
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;z-index:2;">
+      <h1 style="animation:bounce 2s infinite;">He said Yes ! 💖</h1>
+      <h2>Gasha is now the happiest girl alive 🥰</h2>
+    </div>
+  `;
+
+  setInterval(() => {
+    const el = document.createElement("div");
+    const heart = Math.random() > 0.3;
+    el.className = heart ? "heart" : "sparkle";
+    el.style.fontSize = (Math.random() * 40 + 20) + "px";
+    el.style.left = Math.random() * window.innerWidth + "px";
+    el.style.animationDuration = (Math.random() * 4 + 4) + "s";
+    el.innerHTML = heart ? "💖" : "✨";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 9000);
+  }, 120);
+}
+</script>
+
+</body>
+</html>
